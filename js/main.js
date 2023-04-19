@@ -9,20 +9,15 @@ window.onload=()=>{
     var wind = document.getElementById("wind");    
     var icon = document.getElementById("icon");    
 
-// because buttons are stored as an array when using querySelectorAll, we are using for loop to select the clicked btn
-for(var i = 0; i<=btn.length;i++){
-    console.log(btn[i]);
 
-// the paramenter "e" here represents the "event", used for displaying data for the repective button
-    btn[i].addEventListener("click", (e)=>{
+    for(var i=0; i<btn.length; i++){
+        btn[i].addEventListener("click", (e)=>{getWeather(e)});
+        };  
+        // the paramenter "e" here represents the "event", used for displaying data for the repective button
 
-        // Showing the output box
+        function getWeather(e){
         output.style.display="block";
-
-
-        // API for data
-        let city = e.target.innerHTML;
-        const url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=eb1ca7ca219633e2d83086aac238852c&units=metric";
+        const url = "https://api.openweathermap.org/data/2.5/weather?q="+e.target.id+"&appid=eb1ca7ca219633e2d83086aac238852c&units=metric";
 
         // Creating API request
         let xhr = new XMLHttpRequest();
@@ -48,5 +43,6 @@ for(var i = 0; i<=btn.length;i++){
         xhr.open('GET',url);
         xhr.responseType = "json";
         xhr.send(null);
-    })
-}}
+    }
+}
+
